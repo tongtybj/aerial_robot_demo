@@ -37,7 +37,7 @@ catkin build
    - version: `master`
 - edgetpu_roscpp:
    - purpose: deep object detection and tracking for task1
-   - url: http://github.com/JSKAerialRobot/edgetpu_roscpp.git 
+   - url: http://github.com/tongtybj/edgetpu_roscpp.git 
    - version: `master`
 
 ### other dependencies:
