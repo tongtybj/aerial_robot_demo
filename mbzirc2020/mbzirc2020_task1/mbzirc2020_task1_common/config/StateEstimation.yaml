@@ -54,7 +54,7 @@ sensor_plugin:
         gps:
                 estimate_mode: 1 # 1<<0
                 #delay: -0.45 # Ublox M8N normal: -0.4 ~ -0.6 + -0.05: daylight: -0.45, night: -0.5
-                delay: -0.3 # Ublox M9N normal: -0.2 ~ 0.25?, -0.3 is too large?
+                delay: -0.25 # Ublox M9N normal: -0.2 ~ 0.25?, -0.3 is too large?
         vo:
                 estimate_mode: 1 # 1<<0
         vo1: #downward

@@ -30,7 +30,7 @@
 
   <group if="$(arg real_machine)">
     ######### monocular camera (ELP-SUSB1080P) ######
-    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" if="$(arg monocular_camera)" >
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" if="$(eval arg('monocular_camera') and not arg('only_rtkgps'))" ns="hydrus$(arg robot_id)" >
       <param name="video_device" value="/dev/video0" />
       <param name="image_width" value="1920" />
       <param name="image_height" value="1080" />
@@ -43,7 +43,16 @@
     </node>
 
     ######## RTK GPS #############
-    <!-- TODO: add RTK GPS -->
+    <group if="$(arg only_rtkgps)">
+      <group ns="hydrus$(arg robot_id)">
+        <include file="$(find ublox_gps)/launch/ublox_device.launch" >
+          <arg name="param_file_dir" value="$(find mbzirc2020_task1_common)/config/_only_rtkgps/gps/" /> <!-- TODO: move to aerial_robot_base -->
+          <arg name="param_file_name" value="holybro_m8p" />
+          <arg name="node_name" value="rtk_gps" />
+          <arg name="ntrip_ip" value="192.168.1.141" /> <!-- TODO: fixed IP address for Ntrip caster -->
+        </include>
+      </group>
+    </group>
   </group>
 
   <!-- the teleop local frame -->
