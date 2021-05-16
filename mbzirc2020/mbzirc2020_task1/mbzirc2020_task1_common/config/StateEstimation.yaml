@@ -5,8 +5,9 @@ estimation:
         - sensor_plugin/imu
         - sensor_plugin/mocap
         - sensor_plugin/alt
-        - sensor_plugin/vo
+        #- sensor_plugin/vo
         - sensor_plugin/gps
+        - sensor_plugin/gps # RTK-GPS
 
         # egomotion estimation
         egomotion_list:
@@ -53,8 +54,16 @@ sensor_plugin:
                 estimate_mode: 1 # 1<<0
         gps:
                 estimate_mode: 1 # 1<<0
+        gps1: # Spianl Onboard GPS
                 #delay: -0.45 # Ublox M8N normal: -0.4 ~ -0.6 + -0.05: daylight: -0.45, night: -0.5
                 delay: -0.25 # Ublox M9N normal: -0.2 ~ 0.25?, -0.3 is too large?
+        gps2: # RTK GPS (NEO-M8P)
+                rtk: true
+                delay: -0.25
+                gps_ros_sub_name: rtk_gps/fix
+                rtk_pos_sub_name: rtk_gps/rel_pos
+                sensor_frame: rtk_gps
+                rtk_offset: false # True: set the takeoff point as zero for RTK model, otherwise, the zero point is the base station like mocap. Default should be false
         vo:
                 estimate_mode: 1 # 1<<0
         vo1: #downward

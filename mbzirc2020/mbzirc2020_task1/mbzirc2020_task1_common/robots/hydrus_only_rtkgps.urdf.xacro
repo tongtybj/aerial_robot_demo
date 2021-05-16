@@ -71,7 +71,6 @@
           izz="0.0"/>
     </inertial>
   </xacro:extra_module>
-
-  <!-- RTK GPS -->
+  <!-- end: RTK GPS -->
 
 </robot>

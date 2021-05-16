@@ -28,7 +28,7 @@
     <arg name="worldtype" value="$(find mbzirc2020_task1_common)/gazebo_model/world/mbzirc_arena_task_1.world" />
   </include>
 
-  <group if="$(arg real_machine)">
+  <group if="$(eval arg('real_machine') and not arg('simulation'))">
     ######### monocular camera (ELP-SUSB1080P) ######
     <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" if="$(eval arg('monocular_camera') and not arg('only_rtkgps'))" ns="hydrus$(arg robot_id)" >
       <param name="video_device" value="/dev/video0" />
