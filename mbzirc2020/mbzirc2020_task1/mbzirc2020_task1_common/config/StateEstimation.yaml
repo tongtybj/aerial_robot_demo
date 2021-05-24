@@ -5,7 +5,7 @@ estimation:
         - sensor_plugin/imu
         - sensor_plugin/mocap
         - sensor_plugin/alt
-        #- sensor_plugin/vo
+        - sensor_plugin/vo
         - sensor_plugin/gps
         - sensor_plugin/gps # RTK-GPS
 
@@ -56,7 +56,8 @@ sensor_plugin:
                 estimate_mode: 1 # 1<<0
         gps1: # Spianl Onboard GPS
                 #delay: -0.45 # Ublox M8N normal: -0.4 ~ -0.6 + -0.05: daylight: -0.45, night: -0.5
-                delay: -0.25 # Ublox M9N normal: -0.2 ~ 0.25?, -0.3 is too large?
+                delay: -0.35 # alternative: -0.25 # Ublox M9N normal: -0.25 ~ 0.35, -0.35 is good @2021.05.24. TODO: auto-calibra with VIO
+                pos_noise_sigma:  1.0 # alternative: 0.1. Ulbox M8N default is 1.0, Ublox M9N 0.1 is OK, but unstble after waypoint. TODO: two cases during hovering (relax) and navigation (strict)
         gps2: # RTK GPS (NEO-M8P)
                 rtk: true
                 delay: -0.25
